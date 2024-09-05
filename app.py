@@ -72,5 +72,5 @@ def upload_file():
     return jsonify({'error': 'No file uploaded'}), 400
 
 if __name__ == "__main__":
-    app.run(debug=True, port=5001)  # Change the port to 5001 or any other available port
+    app.run(debug=True)  # Change the port to 5001 or any other available port
 
