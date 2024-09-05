@@ -1,23 +1,49 @@
 import React, { useEffect, useRef } from 'react';
 import { Chart, registerables } from 'chart.js';
 import './result.css';
+import { Link } from 'react-router-dom'; 
 
 // Register Chart.js components
 Chart.register(...registerables);
 
 const Header = () => (
   <header className="header">
-    <nav className="navigation-pill-list" aria-label="Main navigation"></nav>
-    <div className="header-auth">
-      <button className="cta-button">Get Started</button>
-    </div>
-  </header>
+      <nav className="nav-pill-list" aria-label="Main navigation">
+        <img
+          src="https://cdn.builder.io/api/v1/image/assets/TEMP/718d74010e015f5b2985eacee0c8112a06a71aa491f3ac9914051ab266d817bf?placeholderIfAbsent=true&apiKey=e0ff1949bd6d4c81976d269bea4a004f"
+          className="logo-image"
+          alt="Company logo"
+        />
+      </nav>
+      <div className="header-auth">
+      
+      <Link to="/home">
+  <button className="get-started-btn">Get Started</button>
+</Link>      </div>
+    </header>
 );
 
 const Footer = () => (
   <footer className="footer">
-    <img src="logo.png" alt="Company Logo" className="logo" />
-  </footer>
+  <img
+    src="https://cdn.builder.io/api/v1/image/assets/TEMP/ffb2d290ed4208936aa3bd0673dc7336290cbfe7f85e6e5c7ab8340e8cfb2ab9?placeholderIfAbsent=true&apiKey=e0ff1949bd6d4c81976d269bea4a004f"
+    className="footer-image"
+    alt="Decorative footer image"
+  />
+  <div className="footer-section">
+    <h2 className="footer-title">Explore</h2>
+    <nav aria-label="Footer navigation">
+      <a href="/home" className="footer-nav-link">Home</a>
+    </nav>
+  </div>
+  <div className="footer-section">
+    <h2 className="footer-title">Developers</h2>
+    <p className="footer-developer-name">Diya Goyal</p>
+    <p className="footer-developer-name">Aaranay Aadi</p>
+    <p className="footer-developer-name">Saumya Gupta</p>
+    <p className="footer-developer-name">Nidhi Verma</p>
+  </div>
+</footer>
 );
 
 const Result = () => {

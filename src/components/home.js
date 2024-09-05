@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom'; // For navigation
 import './home.css';
+import { Link } from 'react-router-dom'; 
 
 const Header = () => {
   return (
@@ -13,7 +14,9 @@ const Header = () => {
         />
       </nav>
       <div className="header-auth">
-        <button className="get-started-btn">Get Started</button>
+      <Link to="/home">
+  <button className="get-started-btn">Get Started</button>
+</Link>  
       </div>
     </header>
   );
@@ -62,7 +65,7 @@ const Footer = () => {
       <div className="footer-section">
         <h2 className="footer-title">Explore</h2>
         <nav aria-label="Footer navigation">
-          <a href="#" className="footer-nav-link">Home</a>
+          <a href="/home" className="footer-nav-link">Home</a>
         </nav>
       </div>
       <div className="footer-section">
