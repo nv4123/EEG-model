@@ -1,3 +1,5 @@
+This project was created for the MUJ HackX hackathon, under the 1st track, i.e Healthcare.
+
 ### Check the model:
 - download the dataset from this link: https://www.kaggle.com/datasets/inancigdem/eeg-data-for-mental-attention-state-detection/data
 - open the 'eeg analysis for attention - model.ipynb' file to run the model
