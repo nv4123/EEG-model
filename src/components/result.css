@@ -1,0 +1,70 @@
+/* src/components/result.css */
+
+.result-page {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    background-color: #f4f4f4;
+}
+
+.two-column-layout {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.left-column,
+.right-column {
+    flex: 1;
+    margin-right: 10px;
+}
+
+.right-column {
+    margin-right: 0;
+}
+
+.donut-chart {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 300px; /* Adjust as needed */
+}
+
+.highlights-section {
+    margin-top: 20px;
+}
+
+.highlight-item {
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.highlights-label {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+
+.highlights-text {
+    font-size: 1em;
+    color: #333;
+}
+
+.button-container {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.download-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+}
+
+.download-button:hover {
+    background-color: #0056b3;
+}

@@ -1,0 +1,197 @@
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  height: 100%;
+  width: 100%;
+}
+
+.home-container {
+  opacity: 1;
+  background: #fcfefe;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  width: 100%;
+}
+
+.content-wrapper {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.header {
+  background-color: #1f2b6c;
+  border-bottom: 1px solid #d9d9d9;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between; /* Space between logo and other items */
+  padding: 0.5rem 1rem; /* Padding around the header content */
+  color: #077ed9;
+  font: 400 16px/1 'Lilita One', sans-serif;
+  box-sizing: border-box; /* Ensure padding is included in width */
+  height: 100px; /* Set a fixed height for the header */
+}
+
+.logo-image {
+  max-width: 100px; /* Fixed width for the logo */
+  height: auto; /* Maintain aspect ratio */
+  display: block;
+  margin-right: auto; /* Push the logo to the left */
+}
+
+.header-auth {
+  display: flex;
+  align-items: center;
+}
+
+.get-started-btn {
+  border-radius: 8px;
+  background-color: #fff;
+  padding: 0.5rem 1rem;
+  border: 1px solid #a9bef0;
+  cursor: pointer;
+  color: #1f2b6c;
+  font-weight: bold;
+}
+
+.eeg-input-container {
+  background-color: rgba(217, 217, 217, 0.16);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #635488;
+  text-align: center;
+  padding: 3rem 1rem;
+  margin: 2rem auto;
+  max-width: 643px;
+  width: 90%;
+}
+
+.eeg-input-wrapper {
+  width: 100%;
+  max-width: 371px;
+}
+
+.eeg-input-title {
+  font: 400 3rem/1.2 'Saira Stencil One', sans-serif;
+  margin-bottom: 2rem;
+}
+
+.file-upload-btn {
+  justify-content: center;
+  border-radius: 16px;
+  box-shadow: 0 4px 8px 3px rgba(0, 0, 0, 0.15), 0 1px 3px 0 rgba(0, 0, 0, 0.3);
+  background-color: #fad9d9;
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  width: 100%;
+  max-width: 246px;
+  margin: 2rem auto;
+  font: 500 1.5rem/1 Roboto, sans-serif;
+  border: none;
+  cursor: pointer;
+}
+
+.start-btn {
+  border-radius: 30px;
+  background-color: #635488;
+  color: #f5f5f5;
+  padding: 1rem 2rem;
+  font: 400 1.5rem/1 'Inknut Antiqua', sans-serif;
+  border: 1px solid #2c2c2c;
+  cursor: pointer;
+  margin: 2rem auto;
+  display: block;
+}
+
+.footer {
+  background-color: #1f2b6c;
+  border-top: 1px solid #d9d9d9;
+  display: flex;
+  align-items: center;
+  padding: 32px 32px 6px 31px;
+  box-sizing: border-box;
+  width: 100%;
+  gap: 16px; /* Gap between logo and content */
+}
+
+.footer-logo {
+  aspect-ratio: 1.12;
+  object-fit: contain;
+  width: 162px;
+  max-width: 100%;
+  margin-right: 32px; /* Space between logo and content */
+}
+
+.footer-content {
+  display: flex;
+  flex: 1;
+  gap: 16px;
+}
+
+.footer-column {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 240px;
+}
+
+.footer-title {
+  display: flex;
+  width: 100%;
+  padding-bottom: 16px;
+  flex-direction: column;
+  color: #fff;
+  font-weight: 700;
+  white-space: nowrap;
+  margin-left: 40px;
+}
+
+
+.footer-title-text {
+  display: flex;
+  width: 100%;
+  align-items: flex-start;
+  justify-content: flex-start;
+  margin-left: 80px;
+  padding-left: 20px;
+  padding-right: 20px;
+  
+}
+
+
+.footer-link {
+  display: flex;
+  margin-top: 12px;
+  flex-direction: column;
+  color: #fff;
+  margin-left: 120px;
+  padding: 20px;
+  padding-top: 0px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 991px) {
+  .footer {
+    padding: 20px;
+    gap: 8px; /* Adjust gap for smaller screens */
+  }
+
+  .footer-logo {
+    width: auto; /* Adjust logo width for smaller screens */
+    margin-right: 20px; /* Adjust space for smaller screens */
+  }
+
+  .footer-title-text {
+    margin-left: 20px;
+  }
+
+  .footer-link {
+    margin-left: 0; /* Remove margin for smaller screens */
+    padding: 10px;
+  }
+}
