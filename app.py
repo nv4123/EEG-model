@@ -41,7 +41,6 @@ def get_powers(channel, FS):
 
 # Function to load all .mat files from a folder, extract data, and train the ML model
 def train_model():
-    # Ask user to select a folder containing .mat files
     folder_path = filedialog.askdirectory(title="Select Folder with .mat Files")
     if not folder_path:
         print("No folder selected.")
@@ -50,13 +49,11 @@ def train_model():
     data = []
     labels = []
 
-    # Loop through all .mat files in the selected folder
     for file_name in os.listdir(folder_path):
         if file_name.endswith(".mat"):
             file_path = os.path.join(folder_path, file_name)
             states, FS = get_data(file_path)
             
-            # Extract power data for each state and channel
             for state, label in zip(['focused', 'unfocused', 'drowsy'], [0, 1, 2]):
                 state_data = states[state]
                 for channel_name in channel_names:
@@ -65,16 +62,13 @@ def train_model():
                     data.append([powers['alpha'], powers['delta'], powers['beta'], powers['gamma']])
                     labels.append(label)
 
-    # Convert data and labels to numpy arrays
     data = np.array(data)
     labels = np.array(labels)
 
-    # Normalize and split the data
     scaler = StandardScaler()
     data = scaler.fit_transform(data)
     X_train, X_test, y_train, y_test = train_test_split(data, labels, test_size=0.3, random_state=42)
 
-    # Train a Random Forest Classifier
     clf = RandomForestClassifier()
     clf.fit(X_train, y_train)
 
@@ -83,43 +77,39 @@ def train_model():
 # Function to plot EEG data
 def plot_eeg(data, FS, channel_name):
     time = np.arange(len(data)) / FS
-    fig, ax = plt.subplots(figsize=(6, 4))
-    ax.plot(time, data)
-    ax.set_xlabel('Time (s)')
-    ax.set_ylabel(f'EEG channel {channel_name}')
-    ax.set_title(f'EEG Data - {channel_name}')
+    fig, ax = plt.subplots(figsize=(8, 5))
+    ax.plot(time, data, color='b')
+    ax.set_xlabel('Time (s)', color='black')
+    ax.set_ylabel(f'EEG channel {channel_name}', color='black')
+    ax.set_title(f'EEG Data - {channel_name}', color='black')
+    ax.grid(True)
     return fig
 
 # Function to analyze and display the EEG data
 def analyze_eeg(file_path, clf, scaler):
     states, FS = get_data(file_path)
 
-    # Get the EEG data for the first channel (you can modify this as needed)
     channel_idx = channel_map['AF3']
-    state_data = states['focused']  # Change this to 'unfocused' or 'drowsy' if needed
+    state_data = states['focused']  
     channel_data = state_data[:, channel_idx]
 
-    # Plot the EEG data
     fig = plot_eeg(channel_data[:1000], FS, 'AF3')
 
-    # Show the plot in the GUI
+    global canvas
     canvas = FigureCanvasTkAgg(fig, master=window)
     canvas.draw()
-    canvas.get_tk_widget().pack()
+    canvas.get_tk_widget().pack(pady=10)
 
-    # Calculate power for each band
     powers = get_powers(channel_data[:1000], FS)
     power_values = np.array([[powers['alpha'], powers['delta'], powers['beta'], powers['gamma']]])
     power_values = scaler.transform(power_values)
     
-    # Predict state using ML model
     state_prediction = clf.predict(power_values)[0]
     state_dict = {0: 'Focused', 1: 'Unfocused', 2: 'Drowsy'}
 
-    # Display the power levels and the predicted state
     result_label.config(text=f"Power Levels:\nAlpha: {powers['alpha']:.4f}\nDelta: {powers['delta']:.4f}\n"
                              f"Beta: {powers['beta']:.4f}\nGamma: {powers['gamma']:.4f}\n\n"
-                             f"Predicted State: {state_dict[state_prediction]}")
+                             f"Predicted State: {state_dict[state_prediction]}", bg='lightyellow', fg='black', padx=10, pady=10)
 
 # Function to handle file upload
 def upload_file():
@@ -127,22 +117,32 @@ def upload_file():
     if file_path:
         analyze_eeg(file_path, clf, scaler)
 
+# Function to reset the GUI (clear plot and labels)
+def reset_gui():
+    if canvas:
+        canvas.get_tk_widget().pack_forget()
+    result_label.config(text="Power Levels: ", bg='lightgray', fg='black')
+
 # Train the ML model before starting the GUI
 clf, scaler = train_model()
 
 # GUI setup
 window = Tk()
 window.title("EEG Data Analyzer")
-window.geometry("800x600")
+window.geometry("900x700")
+window.configure(bg='lightblue')
 
 # Organize layout with frames
-frame_top = Frame(window)
-frame_top.pack(pady=10)
+frame_top = Frame(window, bg='lightblue')
+frame_top.pack(pady=20)
 
-upload_button = Button(frame_top, text="Upload EEG .mat File", command=upload_file)
-upload_button.pack(pady=20)
+upload_button = Button(frame_top, text="Upload EEG .mat File", command=upload_file, font=("Helvetica", 12), bg='royalblue', fg='black', padx=10, pady=5)
+upload_button.pack(pady=10)
 
-result_label = Label(frame_top, text="Power Levels: ", font=("Helvetica", 12))
+reset_button = Button(frame_top, text="Reset", command=reset_gui, font=("Helvetica", 12), bg='tomato', fg='black', padx=10, pady=5)
+reset_button.pack(pady=10)
+
+result_label = Label(frame_top, text="Power Levels: ", font=("Helvetica", 14), bg='lightgray', fg='black', padx=10, pady=10)
 result_label.pack(pady=20)
 
 # Start the GUI event loop
