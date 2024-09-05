@@ -1,6 +1,6 @@
 ### Check the model:
 - download the dataset from this link: https://www.kaggle.com/datasets/inancigdem/eeg-data-for-mental-attention-state-detection/data
-- open the .ipynb file to run the model
+- open the 'eeg analysis for attention - model.ipynb' file to run the model
 
 ### Run the GUI app:
 - download the dataset from this link: https://www.kaggle.com/datasets/inancigdem/eeg-data-for-mental-attention-state-detection/data
